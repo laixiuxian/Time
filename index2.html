@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>图片时间</title>
+    <script>
+        window.onload=function(){
+            var oBox=document.getElementById('box');
+            var oBtn=document.getElementById('btn');
+            function show(){
+                var oDate=new Date();
+                var oYear=oDate.getFullYear(); //年
+                var oMonth=oDate.getMonth();  //0为一月
+                var oDay=oDate.getDate();    //日
+                var oWeek=oDate.getDay();   //周日为0；
+                var oHour=oDate.getHours();
+                var oMin=oDate.getMinutes();
+                var oSec=oDate.getSeconds();
+
+                if(oWeek == 0) oWeek='日';
+                if(oWeek == 1) oWeek="一";
+                if(oWeek == 2) oWeek="二";
+                if(oWeek == 3) oWeek="三";
+                if(oWeek == 4) oWeek="四";
+                if(oWeek == 5) oWeek="五";
+                if(oWeek == 6) oWeek="六";
+                function addZero(n){
+                    if(n<10){
+                        return '0'+n;
+                    }else{
+                        return n;
+                    }
+                }
+                oBox.innerHTML=oYear+"年"+addZero(oMonth+1)+"月"+addZero(oDay)+"日"+oHour+":"+addZero(oMin)+":"+addZero(oSec)+' '+"星期"+oWeek;
+            }
+            oBtn.onclick=function(){
+                if(oBox.style.display=="block"){
+                    oBox.style.display="none";
+                }else{
+                    oBox.style.display="block";
+                }
+//                oBox.style.display="block";
+                oBtn.value="隐藏时间";
+                show();
+                clearInterval(a);
+               var a=setInterval(show,1000);  //每过1000毫秒后执行一次show函数；
+            }
+
+
+        }
+    </script>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            background-color: aqua;
+        }
+        #box{
+            margin: 50px auto;
+            background-color: black;
+            font-size: 20px;
+            color: chartreuse;
+            width: 40%;
+            height: 100px;
+            line-height: 100px;
+            padding-left:15%;
+            display: none;
+        }
+        #btn{
+            width: 70px;
+            height: 35px;
+            background: blueviolet;
+            border-radius: 5px;
+            margin: 10px auto;
+            display: block;
+        }
+        a{
+            display: block;
+            border-radius: 10px;;
+            width: 70px;
+            height: 20px;
+            color: blueviolet;
+            background: chartreuse;
+            font-size: 15px;
+            text-decoration: none;
+            text-align: center;
+            position: absolute;
+            left: 47.5%;
+            bottom: 200px;
+        }
+
+
+    </style>
+</head>
+<body>
+<input type="button" id="btn" value="北京时间">
+<div id="box"></div>
+<a href="index.html">切换</a>
+
+</body>
+</html>

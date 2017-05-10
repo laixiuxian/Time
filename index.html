@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>图片时间</title>
+    <script>
+        window.onload=function(){
+            var oBox=document.getElementById('box');
+            var oBtn=document.getElementById('btn');
+            var aImg=document.getElementsByTagName('img');
+            function show(){
+                var oDate=new Date();
+                var oYear=oDate.getFullYear(); //年
+                var oMonth=oDate.getMonth();  //0为一月
+                var oDay=oDate.getDate();    //日
+                var oWeek=oDate.getDay();   //周日为0；
+                var oHour=oDate.getHours();
+                var oMin=oDate.getMinutes();
+                var oSec=oDate.getSeconds();
+
+                if(oWeek == 0) oWeek='日';
+                if(oWeek == 1) oWeek="一";
+                if(oWeek == 2) oWeek="二";
+                if(oWeek == 3) oWeek="三";
+                if(oWeek == 4) oWeek="四";
+                if(oWeek == 5) oWeek="五";
+                if(oWeek == 6) oWeek="六";
+                function addZero(n){
+                    if(n<10){
+                        return '0'+n;
+                    }else{
+                        return n;
+                    }
+                }
+                var str=oYear+"年"+addZero(oMonth+1)+"月"+addZero(oDay)+"日"+"星"+oWeek+addZero(oHour)+":"+addZero(oMin)+":"+addZero(oSec);
+                console.log(str);
+//                console.log(str.length);//22
+//                console.log(aImg.length);//21
+                for (var i=0; i<str.length; i++)
+                {
+//                    console.log(str.charAt(i));
+                    if (str.charAt(i)=='年' || str.charAt(i)=='月' || str.charAt(i)=='日'|| str.charAt(i)==':'||str.charAt(i)=='星')
+                    {
+                        continue;//继续
+                    }
+                    else
+                    {
+                        aImg[i].src='images/'+str.charAt(i)+'.png';
+//                        console.log(aImg[i].src);
+                    }
+                }
+            }
+            show();
+            clearInterval(a);
+            var a=setInterval(show,1000);  //每过1000毫秒后执行一次show函数；
+            oBtn.onclick=function(){
+                if(oBox.style.display=="block"){
+                    oBox.style.display="none";
+                    oBtn.value="显示时间";
+                }else{
+                    oBox.style.display="block";
+                    oBtn.value="隐藏时间";
+                }
+                show();
+                clearInterval(a);
+               var a=setInterval(show,1000);  //每过1000毫秒后执行一次show函数；
+            }
+
+
+        }
+    </script>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            background-color: aqua;
+            background: url(images/bg.jpg)no-repeat 100% 0;
+            background-size: cover;
+        }
+        #box{
+            margin: 50px auto;
+            background-color: black;
+            font-size: 20px;
+            color: chartreuse;
+            width: 50%;
+            height: 200px;
+            padding-top:2%;
+            text-align: center;
+            display: none;
+        }
+        #btn{
+            width: 70px;
+            height: 35px;
+            background: blueviolet;
+            border-radius: 5px;
+            margin: 10px auto;
+            display: block;
+        }
+        a{
+            display: block;
+            border-radius: 10px;;
+            width: 70px;
+            height: 20px;
+            color: blueviolet;
+            background: chartreuse;
+            font-size: 15px;
+            text-decoration: none;
+            text-align: center;
+            position: absolute;
+            left: 47.5%;
+            bottom: 200px;
+        }
+
+
+    </style>
+</head>
+<body>
+<input type="button" id="btn" value="显示时间">
+<div id="box">
+    <img src="images/0.png">
+    <img src="images/0.png">
+    <img src="images/0.png">
+    <img src="images/0.png">
+    <img src="images/year.png">
+
+    <img src="images/0.png">
+    <img src="images/0.png">
+    <img src="images/month.png">
+
+    <img src="images/0.png">
+    <img src="images/0.png">
+    <img src="images/seven.png">
+    <br>
+    <br>
+    <img src="images/week.png">
+    <img src="images/0.png">
+    <br>
+    <br>
+    <img src="images/0.png">
+    <img src="images/0.png">
+    <img src="images/sign.png">
+    <img src="images/0.png">
+    <img src="images/0.png">
+    <img src="images/sign.png">
+    <img src="images/0.png">
+    <img src="images/0.png">
+
+</div>
+<a href="index2.html">切换</a>
+
+
+</body>
+</html>
